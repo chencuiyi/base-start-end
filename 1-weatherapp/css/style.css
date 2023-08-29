@@ -1,0 +1,104 @@
+*{
+	padding: 0%;
+    margin: 0%;
+	/* border:solid 1px black; */
+	font-family:'Poppins',Arial, Helvetica, sans-serif;
+	box-sizing: border-box;
+}
+	
+body{
+	background-color:#666 ;
+}
+	/* CSS linear-gradient() 函数
+	用于创建一个表示两种或多种颜色线性渐变的图片。
+	其结果属于<gradient>数据类型，是一种特别的<image>数据类型。 */
+.card{
+      width: 90%;
+	  max-width: 470px;
+	  min-width: 100px;
+	  background: linear-gradient(135deg,#00feba,#5b548a);
+	  color: white;
+      margin: 100px auto 0;
+	  border-radius: 20px;
+	  padding: 40px 35px ;
+	  text-align: center;
+}
+	
+.search{
+	width:100%;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+}
+/* 
+
+CSS 的 outline 属性是在一条声明中设置多个轮廓属性的简写属性 ，例如 outline-style, outline-width 和 outline-color。
+border 和 outline 很类似，但有如下区别：
+
+outline 不占据空间，绘制于元素内容周围。
+根据规范，outline 通常是矩形，但也可以是非矩形的。 */
+.search input{
+	border:0;
+	outline:0;
+	background:#ebffc;
+	color:#555;
+	padding:10px 25px;
+	height:60px;
+	border-radius:30px;
+	flex:1;
+	margin-right:16px;
+	font-size:18px;
+}
+/* cursor 光标设置应告知用户可以在当前位置执行的鼠标操作
+ help wait crosshair not-allowed zoom-in grab pointer*/
+.search button{
+	border:0;
+	outline:0;
+	background:#ebffc;
+	border-radius:50%;
+	width:60px;
+	height:60px;
+	cursor:pointer;
+	
+}
+	
+.search button img{
+	width:16px;
+}
+.weather-icon{
+	width:170px;
+	margin-top:30px;
+}
+.weather h1{
+	font-size:80px;
+	font-weight:500;
+}
+.weather h2{
+	font-size:45px;
+	font-weight:400;
+	margin-top: -10px;
+}
+.details{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding:0 20px;
+	margin-top: 50px;;
+}
+.col{
+	display: flex;
+	align-items: center;
+	text-align: left;
+	
+}
+.col img{
+	width:40px;
+	margin-right:10px;
+}
+.humidity, .wind{
+	font-size: 28px;
+	margin-top: -6px;
+}
+.weather{
+	display: none;
+}

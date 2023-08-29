@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Weather App -Easy Tutoriable</title>
+		<link rel="stylesheet" href="./css/style.css" />
+
+	</head>
+	<body>
+
+		<div class="card">
+			<div class="search">
+				<!--spellcheck 全局属性是枚举属性，定义是否可以检查元素的拼写错误。
+				true, 设置在可能的情况下会去检查元素内容的拼写错误;
+false, 设置在可能的情况下关闭对元素内容拼写检查。-->
+				<input type="text" placeholder="enter city name" spellcheck="false">
+				<button><img src="img/images/search.png" alt="搜素"></button>
+			</div>
+			<div class="weather">
+				<img src="img/images/rain.png" alt="" class="weather-icon">
+				<h1 class="temp">22°C</h1>
+				<h2 class="city">New York</h2>
+				<div class="details">
+					<div class="col">
+						<img src="img/images/humidity.png" alt="">
+						<div>
+							<p class="humidity">50%</p>
+							<p>Humidty</p>
+						</div>
+					</div>
+					<div class="col">
+						<img src="img/images/wind.png" alt="">
+						<div>
+							<p class="wind">15km/h</p>
+							<p>Wind</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<!-- key=`${}`&location=beijing&language=zh-Hans&unit=c -->
+	<script>
+		const apiKey="SKW1w1LHEJsUOBiMC";
+		const apiUrl ="https://api.seniverse.com/v3/weather/now.json?";
+		const language = "&language=zh-Hans&unit=c";
+		
+		
+		let searchCity = document.querySelector(".search input");
+		const searchBtn = document.querySelector(".search button");
+		const weatherIcon = document.querySelector(".weather-icon");
+			// fetch 全局的 fetch() 方法用于发起获取资源的请求。它返回一个 promise，这个 promise 会在请求响应后被 resolve，并传回 Response 对象
+	    async function checkWeather(city){
+			const response = await fetch(apiUrl+`key=${apiKey}`+`&location=`+city);
+			console.log(apiUrl+`key=${apiKey}`+`&location=`+city);
+			let data  =await response.json();
+			// 由于接口数据只有温度、地区、天气现象代码，所以就改了上半部分
+			
+			console.log(data);
+			let temperature = data.results[0].now.temperature;
+			let cityda = data.results[0].location.name;
+		    document.querySelector(".temp").innerHTML = temperature+'°C';
+			document.querySelector(".city").innerHTML = cityda;
+			let weIco = data.results[0].now.code;
+			weatherIcon.src = "img/white/"+weIco+"@1x.png";
+		    document.querySelector(".weather").style.display = "block";
+			
+		}
+		// 	document.querySelector("xxxxx").innerHTML = "";---清空其他标签的内容
+		// 	document.querySelector("xxxxx").value = "";-----清空input标签内容
+		
+		// 注意只有双标签有innerHTML标签，单标签没有
+		searchCity.addEventListener("keydown",(e)=>{
+			if(e.key === "Enter"){
+				checkWeather(searchCity.value);
+				document.querySelector(".search input").value = "";
+			}
+			
+		})
+		searchBtn.addEventListener("click",()=>{
+			checkWeather(searchCity.value);
+				document.querySelector(".search input").value = "";
+		})
+	</script>
+</html>
